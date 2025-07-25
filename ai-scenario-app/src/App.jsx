@@ -164,14 +164,14 @@ function App() {
 
       {/* Roadmap Length */}
       <div>
-        <label className="font-semibold">Select Session Length:</label>
+        <label className="font-semibold">Select Intervention Plan</label>
         <select
           className="w-full p-2 border rounded"
           value={roadmapLength}
           onChange={(e) => setRoadmapLength(Number(e.target.value))}
         >
-          <option value={7}>7 Session</option>
-          <option value={21}>21 Session</option>
+          <option value={7}>7 Intervention</option>
+          <option value={21}>21 Intervention</option>
         </select>
       </div>
 

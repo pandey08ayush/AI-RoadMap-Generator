@@ -1,7 +1,7 @@
 export const advancedTheme =[
 
  `Self-Introduction & Conversation Starters : Answer introductory and warm-up questions like "Tell me about yourself", "Why this role/company?".`,
-  "Resume & Experience-Based Questions : Dive deep into past projects, experiences, key highlights, and explain achievements.",
+  "Interview Based Questions : Dive deep into past projects, experiences, key highlights, and explain achievements.",
   "Core Concepts of Your Domain : Revisit fundamentals relevant to the job role — technical or functional.",
   "Role-Centric Interview Questions Level 1 : Handle beginner to intermediate role-specific questions tailored to your profile.",
   "Role-Centric Interview Questions Level 2 : Tackle more advanced, analytical, and tool/framework-related questions.",

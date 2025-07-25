@@ -48,7 +48,7 @@ export const generatePrompt = (
   return `
 You are an expert mock interview system. Based on the following inputs:
 
-Generate a detailed ${duration} days mock interview training plan for a candidate with:
+Generate a detailed ${duration} Intervention mock interview training plan for a candidate with:
 - Job Role: ${role}
 - Years of Experience: ${experience}
 ${resumeText ? `- Resume Summary: ${resumeText}` : ""}
