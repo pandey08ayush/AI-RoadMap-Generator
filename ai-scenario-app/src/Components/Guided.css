@@ -1,0 +1,1246 @@
+/* Main Roadmap Container */
+.main-roadmap-view-all {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 20px;
+    border-radius: 16px;
+    padding: 10px;
+    font-family: "Poppins", sans-serif;
+    overflow: visible;
+}
+
+/* Roadmap Header */
+.roadmap-view-all-header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.roadmap-view-all-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, rgba(224, 224, 224, 0.2) 0%, rgba(224, 224, 224, 1) 50%, rgba(224, 224, 224, 0.2) 100%);
+}
+
+.roadmap-view-all-content {
+    padding: 10px;
+}
+
+.roadmap-view-all-content h1 {
+    font-size: 25px;
+    font-weight: 400;
+    color: #1E1E1E;
+    padding-bottom: 10px;
+}
+
+.roadmap-view-all-content p {
+    font-size: 14px;
+    color: #555555;
+}
+
+.right-roadmap-view-all-content span {
+    font-size: 14px;
+    margin: 10px;
+}
+
+.dys-btn {
+    border: 2px solid #FFDB99;
+    border-radius: 10px;
+    padding: 12px;
+    color: #1E1E1E;
+}
+
+.view-all-btn {
+    border: 2px solid #006894;
+    border-radius: 10px;
+    padding: 12px;
+    color: #006894;
+}
+
+.view-all-btn:hover {
+    background: #006894;
+    color: #fff;
+}
+
+.guided-roadmap-scrolling-container{
+    width: 100%;
+    display: flex;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+/* Card Container with Flex Layout */
+.learning-roadmap-view-all-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+.guided-roadmap-fst-section {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 20px auto;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* Wrapper for card row and progress meter */
+.card-row-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Card Row */
+.card-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/* Progress Circle Container (Positioned before first card) */
+.progress-container-guided-view-all {
+    position: absolute;
+    left: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.progress-container-guided-view-all .progress-circle-meter{
+    width: 65px;
+    height: 65px;
+}
+
+
+
+
+.progress-circle .progress-bg {
+    fill: none;
+    stroke: #E5E7EB;
+    stroke-width: 2;
+}
+
+.progress-circle-meter .progress-bar-meter {
+    fill: none;
+    stroke: #1A932E;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.progress-circle-meter .progress-text {
+    font-weight: 500;
+}
+
+/* Progress Line After Meter */
+.progress-line-after-meter {
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 6px;
+    background: #ccc;
+    border-radius: 10px;
+    z-index: 0;
+}
+
+/* Base Card Styles for All Cards */
+.fst-card-view-all,
+.report-card-view-all,
+.locked-card-view-all {
+    width: 205px;
+    height: 205px;
+    border-radius: 10px;
+    padding: 15px;
+    flex-shrink: 0;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* First Card */
+.fst-card-view-all {
+    box-shadow: 0px 2px 5px #55555575;
+}
+
+/* Report Card */
+.report-card-view-all {
+    border: 1px solid #1A932E;
+    display: flex;
+    flex-direction: column;
+}
+
+.report-card-view-all .report-card-view-all-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.report-card-view-all-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-title-view-all-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-card-view-all-header .card-title span {
+    color: #E07C30;
+    background-color: #FFDB99;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.total-days-view-all {
+    background: none !important;
+    color: #7C8493 !important;  
+    font-size: 12px !important;
+}
+.report-card-view-all-header .tick-icon {
+    color: #1A932E;
+    font-size: 25px;
+}
+
+.report-card-view-all .report-card-view-all-btn button {
+    background: #fff;
+    color: #006894;
+    border: 1px solid #006894;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    width: 100px;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Locked Card */
+.locked-card-view-all {
+    box-shadow: 0px 0px 8px #55555575;
+    position: relative;
+    overflow: hidden;
+}
+
+.locked-card-view-all::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.266);
+    filter: blur(2px);
+    backdrop-filter: blur(1px);
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.locked-card-view-all .card-img-roadmap-view-all {
+    color: #1E1E1E;
+    font-size: 40px;
+    margin: 25px;
+}
+
+.locked-btn button {
+    background: #FFDB99;
+    color: #1E1E1E;
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    width: 100px;
+    cursor: pointer;
+    border: none;
+    font-family: "Poppins", sans-serif;
+}
+
+.locked-card-view-all .card-img-roadmap-view-all,
+.locked-card-view-all .locked-btn {
+    justify-content: center;
+    display: flex;
+    z-index: 1;
+    position: relative;
+    margin: 10px 0;
+}
+
+/* Card Title (Consolidated for all cards) */
+.card-title {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.card-title span {
+    font-size: 12px;
+    font-weight: 500;
+    color: #E07C30;
+    background-color: #FFDB99;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.card-title h2 {
+    font-size: 14px;
+    color: #1E1E1E;
+    padding-top: 7px;
+    font-weight: 600;
+}
+
+.card-title p {
+    font-size: 12px;
+    color: #555555;
+    padding-top: 5px;
+}
+
+/* Card Image and Button */
+.fst-card-view-all .card-img-roadmap-view-all,
+.fst-card-view-all .card-btn {
+    justify-content: center;
+    display: flex;
+    margin: 10px 0;
+}
+
+.card-img-roadmap-view-all {
+    margin: 15px;
+}
+
+.card-img-roadmap-view-all img {
+    width: 50px;
+    transition: transform 0.3s ease;
+}
+
+.card-btn button {
+    background: #006894;
+    color: #fff;
+    font-size: 12px;
+    padding: 8px;
+    width: 100px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Progress Circles Container */
+.progress-circles {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Individual Progress Circle */
+.progress-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.progress-circle .circle {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    background: conic-gradient(#7B61FF 0% 83%, #E5E7EB 83% 100%);
+    color: #1E1E1E;
+}
+
+.progress-circle .circle::before {
+    content: '';
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.progress-circle .circle span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Specific colors for each circle */
+.progress-circle .circle.technical {
+    background: conic-gradient(#006894 0% 83%, #E5E7EB 83% 100%);
+}
+
+.progress-circle .circle.behavioral {
+    background: conic-gradient(#56CDAD 0% 66%, #E5E7EB 66% 100%);
+}
+
+.progress-circle .circle.other {
+    background: conic-gradient(#FF6B6B 0% 23%, #E5E7EB 23% 100%);
+}
+
+.progress-circle p {
+    font-size: 12px;
+    color: #1E1E1E;
+    margin-top: 5px;
+}
+
+.progress-circle .sub-pra {
+    font-size: 10px;
+    color: #555555;
+    margin-top: 5px;
+}
+
+/* Progress Line Between Cards */
+.progress-line-guided-view-all {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    margin: 0 10px;
+}
+
+.progress-line-guided-view-all::before {
+    content: '';
+    position: absolute;
+    height: 6px;
+    background: #ccc;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+    border-radius: 10px;
+}
+
+
+
+.progress-circle-guided-view-all {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #28a745;
+    font-size: 16px;
+    background: #F6F6F6;
+    position: relative;
+    z-index: 1;
+    margin: 0 10px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Green Progress Styling for Lines with Fully Green Ticks */
+.green-progress::before {
+    background: #28a745;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Content */
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 350px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    animation: slideUp 0.3s ease-out forwards;
+}
+
+/* Modal Title */
+.modal-content h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Date and Time Picker */
+.date-time-picker {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 14px !important;
+    font-weight: 500;
+    color: #666;
+    margin: 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Grid Layouts */
+.date-grid,
+.time-grid {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Input Fields */
+.date-input,
+.time-input {
+    width: 70px;
+    height: 50px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    text-align: center;
+    background: #f9f9f9;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.date-input:focus,
+.time-input:focus {
+    border-color: #007bff;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Time Separator */
+.time-separator {
+    font-size: 30px;
+    color: #666;
+    line-height: 50px;
+    margin: 0 2px;
+}
+
+/* Period Buttons */
+.period-button {
+    width: 70px;
+    height: 50px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.period-button.active {
+    background: #006894;
+    color: #fff;
+    border-color: #006894;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.period-button:hover:not(.active) {
+    background: #e9ecef;
+    border-color: #999;
+}
+
+/* Schedule Button */
+.schedule-button {
+    width: 90%;
+    height: 50px;
+    background: #006894;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+.schedule-button:hover {
+    background: #0056b3;
+    box-shadow: 0 4px 10px rgba(0, 86, 179, 0.4);
+}
+
+/* Close Button */
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    color: #333;
+}
+
+.modal-close-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Error Message */
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.locked-card-view-all .card-title {
+    filter: blur(2px);
+}
+
+.dropdown-container-select-job-role {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.view-all-dropdown-job-role {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff;
+    color: #006894;
+    padding: 15px 20px;
+    border: 2px solid #006894;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+
+.dropdown-icon-job-role {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #006894;
+    pointer-events: none;
+}
+
+.card-row-wrapper {
+    position: relative;
+    margin-bottom: 20px; /* Adjust spacing between rows if needed */
+}
+
+.vertical-connector {
+    position: relative;
+    width: 100%;
+    z-index: 0; /* Ensure vertical line is behind cards */
+}
+
+.outward-line {
+    z-index: 0; /* Ensure it stays behind cards */
+}
+
+
+
+
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1400px) {
+    .roadmap-view-all-content h1 {
+        font-size: 20px;
+    }
+
+    .roadmap-view-all-content p {
+        font-size: 12px;
+    }
+
+    .right-roadmap-view-all-content span {
+        font-size: 12px;
+        margin: 5px;
+    }
+
+    .dys-btn {
+        padding: 10px;
+    }
+
+    .view-all-btn {
+        padding: 10px;
+    }
+
+    .fst-card-view-all,
+    .report-card-view-all,
+    .locked-card-view-all {
+        width: 205px;
+        height: 205px;
+    }
+
+    .card-img-roadmap-view-all img {
+        width: 50px;
+    }
+
+    
+   
+
+}
+
+
+@media screen and (max-width: 1023px){
+     .guided-roadmap-fst-section {
+    
+    align-items: flex-end;
+    width: 100%;
+}
+}
+
+
+@media screen and (max-width: 880px) {
+    .roadmap-view-all-content h1 {
+        font-size: 18px;
+    }
+
+
+  
+    .dys-btn {
+        padding: 10px;
+    }
+
+    .view-all-btn {
+        padding: 10px;
+        text-align: center;
+    }
+
+     .guided-roadmap-fst-section {
+    
+    align-items: flex-end;
+    width: 100%;
+}
+  .view-all-dropdown-job-role {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff;
+    color: #006894;
+    padding: 15px 20px;
+    border: 2px solid #006894;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+}
+
+
+}
+
+@media screen and (max-width: 767px) {
+       .progress-container-guided-view-all {
+        position: static;
+        transform: none;
+        /* margin-bottom: 20px; */
+    }
+
+    .progress-line-after-meter {
+        display: none;
+    }
+    
+    .roadmap-view-all-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.right-roadmap-view-all-content{
+    width: 100%;
+    margin: 15px 0;
+}
+ 
+
+}
+
+@media screen and (max-width: 460px) {
+    .roadmap-view-all-content h1 {
+        font-size: 18px;
+    }
+
+    .roadmap-view-all-content p {
+        font-size: 10px;
+        display: contents;
+    }
+
+    .right-roadmap-view-all-content {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .right-roadmap-view-all-content span {
+        font-size: 10px;
+        margin: 5px;
+    }
+
+    .dys-btn {
+        padding: 10px;
+    }
+
+    .view-all-btn {
+        padding: 10px;
+        text-align: center;
+    }
+
+    /* .roadmap-view-all-header {
+        flex-direction: column;
+        align-items: flex-start;
+    } */
+
+    .card-img-roadmap-view-all {
+        margin: 15px;
+    }
+
+    .card-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .fst-card-view-all,
+    .report-card-view-all,
+    .locked-card-view-all {
+        width: 200px;
+        height: 200px;
+        padding: 15px;
+    }
+
+    .card-title h2 {
+        font-size: 12px;
+    }
+
+    .card-title p {
+        font-size: 10px;
+    }
+
+    .card-title span {
+        font-size: 8px;
+    }
+
+    .card-btn button {
+        font-size: 10px;
+        padding: 10px;
+        width: 100px;
+    }
+
+    .main-roadmap-view-all {
+        padding: 5px;
+        margin-left: 5px;
+    }
+
+    .fst-card-view-all:hover,
+    .report-card-view-all:hover {
+        transform: scale(1.02);
+    }
+
+    .locked-card-view-all .card-img-roadmap-view-all {
+        font-size: 25px;
+        margin: 20px;
+    }
+
+    .locked-btn button {
+        font-size: 10px;
+    }
+
+    .card-img-roadmap-view-all img {
+        width: 50px;
+    }
+
+    .progress-circles {
+        margin: 8px 0;
+        justify-content: center;
+    }
+
+    .progress-circle .circle {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    .progress-circle .circle::before {
+        width: 32px;
+        height: 32px;
+    }
+
+    .progress-circle p {
+        font-size: 10px;
+    }
+
+    .progress-circle .sub-pra {
+        font-size: 8px;
+    }
+
+    .report-card-view-all .report-card-view-all-btn button {
+        font-size: 10px;
+        padding: 8px;
+    }
+
+    .report-card-view-all .card-title h2 {
+        font-size: 12px;
+    }
+
+    .report-card-view-all .card-title p {
+        font-size: 10px;
+    }
+
+    .report-card-view-all-header .card-title span {
+        font-size: 8px;
+    }
+
+    .report-card-view-all .report-card-view-all-btn {
+        display: flex;
+        justify-content: center;
+    }
+
+   
+
+    .progress-line-guided-view-all {
+        display: none;
+    }
+
+    
+}
+
+@media screen and (max-width: 320px) {
+    .main-roadmap-view-all {
+        padding: 5px;   
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* .roadmap-view-all-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    } */
+
+    .roadmap-view-all-content h1 {
+        font-size: 16px;
+    }
+
+    .roadmap-view-all-content p {
+        font-size: 8px;
+    }
+
+    .right-roadmap-view-all-content {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+
+    .right-roadmap-view-all-content span {
+        font-size: 8px;
+        margin: 3px;
+    }
+
+    .dys-btn {
+        padding: 6px;
+    }
+
+    .view-all-btn {
+        padding: 6px;
+    }
+
+    .card-row {
+        margin: 5px auto;
+        gap: 20px;
+    }
+
+    .fst-card-view-all,
+    .report-card-view-all,
+    .locked-card-view-all {
+        width: 160px;
+        height: 160px;
+        padding: 15px;
+    }
+
+    .card-title h2 {
+        font-size: 10px;
+    }
+
+    .card-title p {
+        font-size: 8px;
+    }
+
+    .card-title span {
+        font-size: 6px;
+        padding: 3px;
+    }
+
+    .card-img-roadmap-view-all {
+        margin: 15px;
+    }
+
+    .card-img-roadmap-view-all img {
+        width: 50px;
+    }
+
+    .card-btn button {
+        font-size: 10px;
+        padding: 6px;
+    }
+
+    .fst-card-view-all:hover,
+    .report-card-view-all:hover {
+        transform: scale(1.02);
+    }
+
+    .locked-card-view-all .card-img-roadmap-view-all {
+        font-size: 20px;
+        margin: 15px;
+    }
+
+    .locked-btn button {
+        font-size: 8px;
+        padding: 6px;
+    }
+
+    .progress-circles {
+        margin: 10px 0;
+        padding: 0 5px;
+    }
+
+    .progress-circle .circle {
+        width: 40px;
+        height: 40px;
+        font-size: 10px;
+    }
+
+    .progress-circle .circle::before {
+        width: 34px;
+        height: 34px;
+    }
+
+    .progress-circle p {
+        font-size: 8px;
+    }
+
+    .progress-circle .sub-pra {
+        font-size: 6px;
+        margin-top: 3px;
+    }
+
+    .progress-line-after-meter {
+        display: none;
+    }
+}
+
+/* Responsive Adjustments for Modal */
+@media screen and (max-width: 460px) {
+    .modal-content {
+        padding: 15px;
+        max-width: 320px;
+    }
+
+    .modal-content h2 {
+        font-size: 18px;
+    }
+
+    .section-title {
+        font-size: 12px;
+    }
+
+    .date-input,
+    .time-input,
+    .period-button {
+        width: 55px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .time-separator {
+        font-size: 16px;
+        line-height: 40px;
+    }
+
+    .schedule-button,
+    .cancel-button {
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .modal-close-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .modal-content {
+        padding: 10px;
+        max-width: 280px;
+    }
+
+    .date-input,
+    .time-input,
+    .period-button {
+        width: 45px;
+        height: 35px;
+        font-size: 12px;
+    }
+
+    .time-separator {
+        font-size: 14px;
+        line-height: 35px;
+    }
+
+    .schedule-button,
+    .cancel-button {
+        height: 35px;
+        font-size: 12px;
+    }
+
+    .modal-close-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Hide number input arrows */
+.date-input::-webkit-inner-spin-button,
+.date-input::-webkit-outer-spin-button,
+.time-input::-webkit-inner-spin-button,
+.time-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.date-input[type=number],
+.time-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Add shadow to vertical connector progress tick to match progress-circle-guided-view-all */
+.vertical-connector circle {
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+
+.vertical-card-container-single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.card-wrapper-single {
+  position: relative;
+  margin-bottom: 60px;
+}
+.vertical-progress-line-single {
+  position: absolute;
+  left: 50%;
+  bottom: -100px;
+  transform: translateX(-50%);
+}
+.progress-container-guided-view-all-single {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+/* Guided Popup Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it appears above other content */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-content-guided {
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 90vw; /* Responsive width */
+    max-height: 90vh; /* Fixed maximum height */
+    overflow-x: hidden; /* Disable vertical scrolling */
+    overflow-y: auto; /* Enable vertical scrolling when content exceeds max-height */
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease-out forwards;
+    scrollbar-width: none; /* For Firefox */
+}
+
+.popup-content-guided .popup-close-btn-guided {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #666;
+    transition: color 0.3s ease;
+}

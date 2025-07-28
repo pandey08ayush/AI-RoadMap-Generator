@@ -1,0 +1,1938 @@
+/* Main Roadmap Container */
+.main-roadmap {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 20px;
+    border-radius: 16px;
+    padding: 20px;
+    font-family: "Poppins", sans-serif;
+    overflow: visible;
+    background-color: #fff;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+}
+.main-roadmap-popup {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px; 
+    font-family: "Poppins", sans-serif;
+    overflow: visible;
+    background-color: #fff;
+}
+
+/* Roadmap Header */
+.roadmap-header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.roadmap-content {
+    padding: 10px;
+}
+
+.roadmap-content h1 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #1E1E1E;
+    padding-bottom: 10px;
+}
+
+.roadmap-content p {
+    font-size: 14px;
+    color: #555555;
+}
+
+.right-roadmap-content span {
+    font-size: 14px;
+    margin: 10px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: #555555;
+}
+
+.dys-btn {
+    border: 2px solid #FFDB99;
+    border-radius: 10px;
+    padding: 12px;
+    color: #1E1E1E;
+}
+
+.view-all-btn {
+    border: 2px solid #006894;
+    border-radius: 10px;
+    padding: 12px;
+    color: #006894;
+}
+
+.view-all-btn:hover {
+    background: #006894;
+    color: #fff;
+}
+
+/* Card Container */
+.learning-roadmap-card {
+    gap: 50px;
+    overflow-x: auto; /* Changed to auto for better compatibility */
+    scrollbar-width: none;
+}
+
+.learning-roadmap-card::-webkit-scrollbar {
+    display: none;
+}
+
+/* Report Card */
+.report-card {
+    width: 240px;
+    height: 240px;
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    border: 1px solid #1A932E;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    background-color: #fff;
+}
+
+.report-card .report-card-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.report-card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.report-card-header .card-title span {
+    color: #56CDAD;
+    background-color: #56cdad34;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.report-card-header .tick-icon {
+    color: #1A932E;
+    font-size: 25px;
+}
+
+.report-card .report-card-btn button {
+    background: #fff;
+    color: #006894;
+    border: 1px solid #006894;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    width: 100px;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+}
+
+/* First Card */
+.fst-card {
+    width: 250px;
+    height: 280px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px #55555575;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+    background-color: #fff;
+}
+
+.fst-card:hover {
+    border: 0.5px solid #05648db3;
+    box-shadow: 0px 0px 10px #006894;
+    transform: scale(1.08);
+}
+
+.report-card:hover {
+    border: 0.5px solid #1A932E;
+    box-shadow: 0px 0px 10px #1a932e7e;
+    transform: scale(1.08);
+}
+
+/* Card Title (Consolidated for all cards) */
+.card-title {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.card-title span {
+    font-size: 12px;
+    font-weight: 500;
+    color: #56CDAD;
+    background-color: #56cdad34;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.card-title h2 {
+    font-size: 14px;
+    color: #1E1E1E;
+    padding-top: 10px;
+    font-weight: 500;
+}
+
+.card-title p {
+    font-size: 12px;
+    color: #555555;
+    padding-top: 5px;
+}
+
+.report-card .card-title h2 {
+    font-size: 14px;
+}
+
+.report-card .card-title p {
+    font-size: 12px;
+}
+
+.fst-card .card-img,
+.fst-card .card-btn {
+    justify-content: center;
+    display: flex;
+}
+
+.card-img {
+    margin: 15px;
+}
+
+.card-img img {
+    width: 80px;
+    transition: transform 0.3s ease;
+}
+
+.card-btn button {
+    background: #006894;
+    color: #fff;
+    font-size: 12px;
+    padding: 8px;
+    width: 100px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Locked Card */
+.locked-card {
+    width: 240px;
+    height: 240px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px #55555575;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #fff;
+}
+
+.locked-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.266);
+    filter: blur(2px);
+    backdrop-filter: blur(1px);
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.locked-card .card-img {
+    color: #1E1E1E;
+    font-size: 40px;
+    margin: 25px;
+}
+
+.locked-btn button {
+    background: #FFDB99;
+    color: #1E1E1E;
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    align-items: center;
+    font-weight: 500;
+    text-align: center;
+    width: 100px;
+    cursor: pointer;
+    border: none;
+    font-family: "Poppins", sans-serif;
+}
+
+.locked-card .card-img,
+.locked-card .locked-btn {
+    justify-content: center;
+    display: flex;
+    z-index: 1;
+    position: relative;
+}
+
+.locked-right {
+    display: flex;
+    gap: 50px;
+    margin: 20px;
+    align-items: center;
+}
+
+/* Progress Circles Container */
+.progress-circles-roadmap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Individual Progress Circle */
+.progress-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.progress-circle .circle {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    background: conic-gradient(#7B61FF 0% 83%, #E5E7EB 83% 100%);
+    color: #1E1E1E;
+}
+
+.progress-circle .circle::before {
+    content: '';
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.progress-circle .circle span {
+    position: relative;
+    z-index: 1;
+}
+
+.progress-circle .circle.technical {
+    background: conic-gradient(#006894 0% 83%, #E5E7EB 83% 100%);
+}
+
+.progress-circle .circle.behavioral {
+    background: conic-gradient(#56CDAD 0% 66%, #E5E7EB 66% 100%);
+}
+
+.progress-circle .circle.other {
+    background: conic-gradient(#FF6B6B 0% 23%, #E5E7EB 23% 100%);
+}
+
+.progress-circle p {
+    font-size: 12px;
+    color: #1E1E1E;
+    margin-top: 5px;
+}
+
+.progress-circle .sub-pra {
+    font-size: 10px;
+    color: #555555;
+    margin-top: 5px;
+}
+
+/* Initial Roadmap Selection */
+.initial-roadmap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.roadmap-selection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    position: relative;
+    width: 100%;
+    max-width: 710px;
+      margin: 0 auto 2rem auto;
+
+}
+
+.roadmap-selection-role,
+.roadmap-selection-intervention {
+    position: relative;
+}
+
+.input-container,
+.input-container-advanced {
+    position: relative;
+    width: 100%;
+    flex: 1;
+}
+
+.roadmap-selection-role label,
+.roadmap-selection-intervention label,
+.roadmap-selection-intervention-advanced label,
+.text-box-container label {
+    font-size: 14px;
+    padding: 5px 0;
+    font-weight: 400;
+    color: #555555;
+}
+
+.roadmap-selection-role .selection-input,
+.roadmap-selection-intervention .selection-input,
+.roadmap-selection-intervention .selection-input-end,
+.roadmap-selection-intervention-advanced .selection-input-focus {
+    width: 100%;
+    padding: 15px 40px 15px 20px;
+    border: 1px solid #00000033;
+    border-radius: 10px 0 0 10px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    transition: border 0.2s, color 0.2s;
+    background: #fff;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.roadmap-selection-intervention .selection-input {
+    border-radius: 0;
+}
+
+.roadmap-selection-intervention .selection-input-end {
+    border-radius: 0 10px 10px 0;
+}
+
+.roadmap-selection-intervention-advanced .selection-input-focus {
+    border-radius: 10px;
+}
+
+.selection-input:focus {
+    border: 1px solid #007bff;
+}
+
+.selection-input-filled {
+    color: #006894;
+    border: 1px solid #00689480 !important;
+}
+
+/* Dropdown Icon Positioning */
+.dropdown-toggle-icon,
+.fixed-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #006894;
+    font-size: 14px;
+    padding: 5px;
+    z-index: 2;
+    pointer-events: auto;
+    transition: none;
+}
+
+/* Disabled state for icon */
+.dropdown-toggle-icon.disabled {
+    color: #b6b6b6;
+    cursor: not-allowed;
+}
+
+.dropdown-select {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2000;
+    min-width: 200px;
+    margin-top: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.dropdown-select::-webkit-scrollbar {
+    display: none;
+}
+
+.dropdown-select-item {
+    padding: 10px;
+    cursor: pointer;
+    color: #006894;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+}
+
+.dropdown-select-item:hover {
+    background: #f0f0f0;
+}
+
+.dropdown-select-item.disabled {
+    color: #999;
+    cursor: not-allowed;
+}
+
+.roadmap-selection-intervention button {
+    padding: 15px;
+    border-radius: 0 10px 10px 0;
+    background: #fff;
+    color: #B6B6B6;
+    border: 1.5px solid #B6B6B6;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 1;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    font-weight: 500;
+}
+
+.roadmap-selection-intervention button img {
+    width: 22px;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.roadmap-selection-intervention button:not(:disabled) {
+    background: #fff;
+    color: #006894;
+    border: 1.5px solid;
+    border-image: linear-gradient(to bottom right, #FFCC70, #6F00FF, #3E8EFF) 1;
+    opacity: 1;
+}
+
+.roadmap-selection-intervention button:not(:disabled) img {
+    opacity: 1;
+}
+
+.roadmap-selection-intervention button:not(:disabled):hover {
+    color: #006894;
+    border-image: linear-gradient(to bottom right, #FFCC70, #6F00FF, #3E8EFF) 1;
+    background: linear-gradient(to right, #ffffff, #0068941a);
+}
+
+.roadmap-selection-intervention button:not(:disabled):hover img {
+    opacity: 1;
+}
+
+.roadmap-selection-intervention button:not(:disabled):active {
+    filter: blur(0.5px);
+    color: #fff;
+    border-image: linear-gradient(to bottom right, #FFCC70, #6F00FF, #3E8EFF) 1;
+    border-radius: 0 10px 10px 0 !important;
+    overflow: hidden;
+}
+
+.roadmap-selection-intervention button:not(:disabled):active img {
+    opacity: 1;
+    filter: none;
+}
+
+.roadmap-code {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+}
+
+.roadmap-code .or-line {
+    font-size: 14px;
+    color: #555555;
+    position: relative;
+    padding: 0 10px;
+    z-index: 1;
+}
+
+.roadmap-code .or-line::before,
+.roadmap-code .or-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.roadmap-code .or-line::before {
+    left: 0;
+    right: 50%;
+    margin-right: 20px;
+    background: linear-gradient(to right, rgba(224, 224, 224, 0.2) 0%, rgba(224, 224, 224, 2) 100%);
+}
+
+.roadmap-code .or-line::after {
+    left: 50%;
+    right: 0;
+    margin-left: 20px;
+    background: linear-gradient(to left, rgba(224, 224, 224, 0.2) 0%, rgba(224, 224, 224, 2) 100%);
+}
+
+.roadmap-code h4 {
+    font-size: 16px;
+    color: #006894;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.roadmap-code p {
+    font-size: 12px;
+    color: #555555;
+    margin-bottom: 10px;
+}
+
+.roadmap-code input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.roadmap-code button {
+    padding: 15px 30px;
+    border-radius: 5px;
+    background: #00689440;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    border: none;
+    justify-content: center;
+}
+
+.roadmap-code .code-btn {
+    padding: 15px 30px;
+    border-radius: 5px;
+    background: #F3F3F3;
+    color: #ADADAD;
+    cursor: pointer;
+    font-size: 14px;
+    border: 2px dashed #006894;
+    text-align: center;
+}
+
+.code-btn:focus {
+    outline: none;
+    border: 2px dashed #006894;
+}
+
+.roadmap-code-input {
+    margin: 30px 0;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Unlock Roadmap Button */
+.unlock-roadmap-btn {
+    padding: 15px;
+    border-radius: 10px;
+    background: #F3F3F3;
+    color: #ADADAD;
+    border: none;
+    cursor: not-allowed;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    font-family: "Poppins", sans-serif;
+}
+
+.unlock-roadmap-btn:not(:disabled) {
+    background: #006894;
+    color: #fff;
+    cursor: pointer;
+}
+
+.unlock-roadmap-btn svg {
+    font-size: 16px;
+}
+
+.advance-customization {
+    display: flex;
+    align-items: center;
+}
+
+.advanced-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    /* width: 100%; */
+    max-width: 750px; /* Consistent max-width with roadmap-selection */
+}
+
+.roadmap-focus {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    width: 100%;
+    max-width: 750px; /* Consistent max-width */
+}
+
+/* Editable Box */
+.editable-box {
+    direction: ltr; /* Ensure left-to-right text direction */
+    text-align: left; /* Align text to the left */
+    width: 100%;
+    min-height: 150px;
+      max-height: 250px;
+
+    padding: 15px;
+    border: 1px solid #00000033;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    background: #fff;
+    overflow-y: auto;
+    white-space: pre-wrap; /* Preserve line breaks and spaces */
+    box-sizing: border-box;
+    scrollbar-width: none;
+}
+
+.editable-box:empty:before {
+    content: attr(data-placeholder);
+    color: #adadad;
+    pointer-events: none;
+}
+
+.editable-box:focus {
+    border: 1px solid #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Save Button */
+.save-button-advanced {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #fff;
+    color: #006894;
+    border: 1px solid #006894;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+
+.save-button-advanced:hover {
+    background: #006894;
+    color: #fff;
+}
+
+/* Text Box Container */
+.text-box-container {
+    position: relative;
+    width: 100%;
+    max-width: 750px; /* Consistent max-width */
+    margin-top: 10px;
+}
+
+.advanced-textarea-description,
+.advanced-textarea-resume {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.advanced-textarea-description span,
+.advanced-textarea-resume span {
+    font-size: 14px;
+    color: #b6b6b6;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+}
+
+.file-name {
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    color: inherit; /* Default color (not blue) */
+}
+
+.file-name.active {
+    color: #006894; /* Blue text only when file name is present */
+}
+ 
+
+/* Focus Area Section */
+.roadmap-selection-intervention-advanced {
+    width: 100%;
+    max-width: 750px; /* Consistent max-width */
+    margin: 0 auto;
+}
+
+.focus-area-input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding: 8px 4px;
+    font-size: 14px;
+    width: 100%;
+    transition: border-color 0.2s ease;
+}
+
+.focus-area-input.active-border {
+    border-bottom: 0.2px solid #b6b6b62d;
+}
+
+.focus-area-input::placeholder {
+    color: #aaa;
+}
+
+.expandable-input {
+    position: relative;
+    width: 100%;
+    border: 1px solid #00000033;
+    border-radius: 10px;
+    background: #fff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 50px;
+}
+
+.selected-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: flex-start;
+    min-height: 34px;
+    position: relative;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.selected-values::-webkit-scrollbar {
+    display: none;
+}
+
+.selected-value {
+    display: flex;
+    align-items: center;
+    background: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #006894;
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 5px;
+}
+
+.remove-value {
+    margin-left: 5px;
+    cursor: pointer;
+    color: #006894;
+    font-weight: bold;
+    display: flex;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.selection-input-focus {
+    width: 100%;
+    padding: 5px 40px 5px 10px;
+    border: none;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    background: transparent;
+    flex-grow: 1;
+    min-width: 0;
+    height: 34px;
+    margin-bottom: 5px;
+}
+
+.selection-input-focus:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.dropdown-options {
+    position: static;
+    z-index: auto;
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    background: white;
+    border-radius: 6px;
+    margin-top: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-options::-webkit-scrollbar {
+    display: none;
+}
+
+.dropdown-option-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #006894;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-option-item:hover {
+    background: #f0f0f0;
+}
+
+.focus-area-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #006894;
+}
+
+/* Upload Option */
+.upload-option {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.upload-btn-description {
+    padding: 10px;
+    display: flex;
+    width: fit-content;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid #00000033;
+    border-radius: 10px;
+}
+
+.upload-option .or-line {
+    font-size: 14px;
+    color: #555555;
+    position: relative;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.upload-option .or-line::before,
+.upload-option .or-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    transform: translateY(-50%);
+    background: linear-gradient(to right, rgba(224, 224, 224, 0.2) 0%, rgba(224, 224, 224, 2) 100%);
+}
+
+.upload-option .or-line::before {
+    left: 0;
+    right: 50%;
+    margin-right: 20px;
+}
+
+.upload-option .or-line::after {
+    left: 50%;
+    right: 0;
+    margin-left: 20px;
+}
+
+.upload-button-advanced {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #fff;
+    color: #54575C;
+    border: 1px solid #CBD0DC;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+}
+
+.upload-button-advanced:hover {
+    background: #006894;
+    color: #fff;
+}
+
+.switch-customization {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+.switch-customization::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 20px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.switch-customization.on {
+    background-color: #1A932E33;
+}
+
+.switch-customization.off {
+    background-color: #D0D5DD;
+}
+
+.switch-customization.on::before {
+    left: 20px;
+    background-color: #1A932E;
+}
+
+.switch-customization.off::before {
+    background-color: #E4E7EC;
+}
+
+.roadmap-selection-intervention .advancedai-btn {
+    padding: 15px;
+    border-radius: 10px;
+    background: #fff;
+    color: #B6B6B6;
+    border: 1.5px solid #B6B6B6;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 1;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    font-weight: 500;
+    width: fit-content;
+}
+
+.advancedai-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Content */
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 350px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    animation: slideUp 0.3s ease-out forwards;
+}
+
+/* Modal Title */
+.modal-content h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Date and Time Picker */
+.date-time-picker {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 14px !important;
+    font-weight: 500;
+    color: #666;
+    margin: 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Grid Layouts */
+.date-grid,
+.time-grid {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Input Fields */
+.date-input,
+.time-input {
+    width: 70px;
+    height: 50px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    text-align: center;
+    background: #f9f9f9;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.date-input:focus,
+.time-input:focus {
+    border-color: #007bff;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Time Separator */
+.time-separator {
+    font-size: 30px;
+    color: #666;
+    line-height: 50px;
+    margin: 0 2px;
+}
+
+/* Period Buttons */
+.period-button {
+    width: 70px;
+    height: 50px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.period-button.active {
+    background: #006894;
+    color: #fff;
+    border-color: #006894;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.period-button:hover:not(.active) {
+    background: #e9ecef;
+    border-color: #999;
+}
+
+/* Schedule Button */
+.schedule-button {
+    width: 90%;
+    height: 50px;
+    background: #006894;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+.schedule-button:hover {
+    background: #0056b3;
+    box-shadow: 0 4px 10px rgba(0, 86, 179, 0.4);
+}
+
+/* Close Button */
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    color: #333;
+}
+
+.modal-close-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Error Message */
+.text-red-500 {
+    color: #dc3545;
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.length-preference-radius .selection-input{
+    border-radius: 0 10px 10px 0;
+}
+/* Responsive Adjustments */
+@media screen and (max-width: 1400px) {
+    .roadmap-content h1 {
+        font-size: 20px;
+    }
+
+    .roadmap-content p {
+        font-size: 12px;
+    }
+
+    .right-roadmap-content span {
+        font-size: 12px;
+        margin: 5px;
+    }
+
+    .dys-btn {
+        padding: 10px;
+    }
+
+    .view-all-btn {
+        padding: 10px;
+    }
+
+    .fst-card {
+        width: 220px;
+        height: 280px;
+    }
+
+    .report-card {
+        width: 240px;
+        height: 240px;
+    }
+
+    .locked-card {
+        width: 240px;
+        height: 240px;
+    }
+
+    .card-img img {
+        width: 80px;
+        transition: transform 0.3s ease;
+    }
+
+    .input-container {
+        max-width: 220px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .roadmap-selection-intervention span {
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .roadmap-selection-role .selection-input,
+    .roadmap-selection-intervention .selection-input,
+    .roadmap-selection-intervention .selection-input-end,
+    .roadmap-selection-intervention-advanced .selection-input-focus {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .roadmap-selection {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .input-container {
+        max-width: none;
+        width: 100%;
+    }
+
+    .roadmap-selection-role .selection-input {
+        border-radius: 10px;
+    }
+
+    .roadmap-selection-intervention .selection-input {
+        border-radius: 0;
+    }
+    .intervention-radius .selection-input,
+    .length-preference-radius .selection-input {
+        border-radius: 10px;
+    }
+
+    .roadmap-selection-intervention button {
+        border-radius: 0 0 10px 10px;
+        width: 100%;
+        max-width: none;
+        justify-content: center;
+    }
+
+    .dropdown-select {
+        min-width: 100%;
+    }
+
+    .dropdown-select-item {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .roadmap-selection-role,
+    .roadmap-selection-intervention {
+        position: relative;
+        width: 100%;
+    }
+
+    .advance-customization span p {
+        display: none;
+    }
+
+    .advanced-form {
+        width: 100%;
+    }
+
+    .roadmap-selection-intervention .selection-input-end {
+        width: 100%;
+        padding: 15px 40px 15px 20px;
+        border: 1px solid #00000033;
+        border-radius: 10px;
+        font-family: "Poppins", sans-serif;
+        outline: none;
+        transition: border 0.2s, color 0.2s;
+        background: #fff;
+    }
+
+    .text-box-container {
+        max-width: 100%;
+    }
+
+    .selected-value {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+    .focus-area-input {
+  
+    font-size: 12px;
+}
+}
+
+@media screen and (max-width: 880px) {
+    .roadmap-content h1 {
+        font-size: 18px;
+    }
+
+    .roadmap-content p {
+        font-size: 10px;
+        display: contents;
+    }
+
+    .right-roadmap-content {
+        display: flex;
+    }
+
+    .right-roadmap-content span {
+        font-size: 10px;
+        margin: 5px;
+        text-align: center;
+    }
+
+    .dys-btn {
+        padding: 10px;
+    }
+
+    .view-all-btn {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .roadmap-selection {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .input-container {
+        max-width: none;
+        width: 100%;
+    }
+
+    .dropdown-select {
+        min-width: 100%;
+    }
+
+    .dropdown-select-item {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .roadmap-selection-role,
+    .roadmap-selection-intervention {
+        position: relative;
+        width: 100%;
+    }
+
+    .roadmap-code-input {
+        margin: 30px 0;
+        gap: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .roadmap-code .code-btn {
+        padding: 15px 30px;
+        border-radius: 5px;
+        background: #F3F3F3;
+        color: #ADADAD;
+        cursor: pointer;
+        font-size: 14px;
+        border: 2px dashed #006894;
+        width: 100%;
+    }
+
+    .roadmap-code button {
+        padding: 15px 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        border: none;
+        width: 100%;
+    }
+
+    .advanced-textarea-description span,
+    .advanced-textarea-resume span {
+        font-size: 12px;
+    color: #006894;
+        font-family: "Poppins", sans-serif;
+    }
+
+    .roadmap-selection-role label,
+.roadmap-selection-intervention label,
+.roadmap-selection-intervention-advanced label,
+.text-box-container label {
+    font-size: 12px;
+    padding: 5px 0;
+    font-weight: 400;
+    color: #555555;
+}
+
+}
+
+@media screen and (max-width: 700px) {
+    .report-card .report-card-btn {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .roadmap-content h1 {
+        font-size: 18px;
+    }
+
+    .roadmap-content p {
+        font-size: 10px;
+        display: contents;
+    }
+
+    .right-roadmap-content {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .right-roadmap-content span {
+        font-size: 10px;
+        margin: 5px;
+    }
+
+    .dys-btn {
+        padding: 10px;
+    }
+
+    .view-all-btn {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .card-img {
+        margin: 15px;
+    }
+
+    .learning-roadmap-card {
+        margin: 10px;
+        gap: 30px;
+    }
+
+    .report-card {
+        width: 190px;
+        height: 190px;
+        padding: 15px;
+    }
+
+    .fst-card {
+        width: 190px;
+        height: 260px;
+    }
+
+    .card-title h2 {
+        font-size: 12px;
+    }
+
+    .card-title p {
+        font-size: 10px;
+    }
+
+    .card-title span {
+        font-size: 8px;
+    }
+
+    .card-btn button {
+        font-size: 10px;
+        padding: 10px;
+        width: 100px;
+    }
+
+    .main-roadmap {
+        padding: 5px;
+        margin-left: 5px;
+    }
+
+    .fst-card:hover,
+    .report-card:hover {
+        transform: scale(1.02);
+    }
+
+    .locked-card {
+        width: 190px;
+        height: 190px;
+        padding: 15px;
+    }
+
+    .locked-btn button {
+        font-size: 10px;
+    }
+
+    .locked-card .card-img {
+        color: #1E1E1E;
+        font-size: 25px;
+        margin: 20px;
+    }
+
+    .card-img img {
+        width: 75px;
+        transition: transform 0.3s ease;
+    }
+
+    .progress-circles-roadmap {
+        margin: 5px 0;
+        justify-content: center;
+    }
+
+    .progress-circle .circle {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    .progress-circle .circle::before {
+        width: 32px;
+        height: 32px;
+    }
+
+    .progress-circle p {
+        font-size: 10px;
+    }
+
+    .progress-circle .sub-pra {
+        font-size: 8px;
+    }
+
+    .report-card .report-card-btn button {
+        font-size: 10px;
+        padding: 8px;
+    }
+
+    .report-card .card-title h2 {
+        font-size: 12px;
+    }
+
+    .report-card .card-title p {
+        font-size: 10px;
+    }
+
+    .report-card-header .card-title span {
+        font-size: 8px;
+    }
+
+    .report-card .report-card-btn {
+        display: flex;
+        justify-content: center;
+    }
+
+    .locked-right {
+        display: flex;
+        gap: 30px;
+        margin: 20px;
+        align-items: center;
+    }
+
+    .selection-input,
+    .roadmap-selection-role .selection-input,
+    .roadmap-selection-intervention .selection-input,
+    .roadmap-selection-intervention .selection-input-end,
+    .roadmap-selection-intervention-advanced .selection-input-focus {
+        padding: 12px 35px 12px 15px;
+        font-size: 12px;
+    }
+
+    .dropdown-toggle-icon,
+    .fixed-icon {
+        right: 8px;
+        font-size: 14px;
+        padding: 4px;
+    }
+
+    .dropdown-select {
+        min-width: 180px;
+    }
+
+    .dropdown-select-item {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .editable-box {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .save-button-advanced {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+
+    .upload-button-advanced {
+        padding: 8px 10px;
+        font-size: 10px;
+    }
+
+    .advanced-textarea-description span,
+    .advanced-textarea-resume span {
+        font-size: 10px;
+    color: #006894;
+        font-family: "Poppins", sans-serif;
+    }
+
+    .selection-input-focus {
+        padding: 5px 35px 5px 10px;
+    }
+
+    .dropdown-option-item {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+
+    .selected-value {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .main-roadmap {
+        padding: 5px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .roadmap-content h1 {
+        font-size: 16px;
+    }
+
+    .roadmap-content p {
+        font-size: 8px;
+    }
+
+    .right-roadmap-content {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+
+    .right-roadmap-content span {
+        font-size: 8px;
+        margin: 3px;
+    }
+
+    .dys-btn {
+        padding: 6px;
+    }
+
+    .view-all-btn {
+        padding: 6px;
+    }
+
+    .learning-roadmap-card {
+        margin: 5px;
+        gap: 20px;
+    }
+
+    .report-card {
+        width: 160px;
+        height: 160px;
+        padding: 10px;
+    }
+
+    .fst-card {
+        width: 160px;
+        height: 220px;
+        padding: 10px;
+    }
+
+    .card-title h2 {
+        font-size: 10px;
+    }
+
+    .card-title p {
+        font-size: 8px;
+    }
+
+    .card-title span {
+        font-size: 6px;
+        padding: 3px;
+    }
+
+    .card-img {
+        margin: 10px;
+    }
+
+    .card-img img {
+        width: 60px;
+    }
+
+    .card-btn button {
+        font-size: 8px;
+        padding: 6px;
+        width: 80px;
+    }
+
+    .fst-card:hover,
+    .report-card:hover {
+        transform: scale(1.02);
+    }
+
+    .locked-card {
+        width: 160px;
+        height: 160px;
+        padding: 10px;
+    }
+
+    .locked-card .card-img {
+        font-size: 20px;
+        margin: 10px;
+    }
+
+    .locked-btn button {
+        font-size: 8px;
+        padding: 6px;
+        width: 80px;
+    }
+
+    .progress-circle .circle {
+        width: 30px;
+        height: 30px;
+        font-size: 10px;
+    }
+
+    .progress-circle .circle::before {
+        width: 24px;
+        height: 24px;
+    }
+
+    .progress-circle p {
+        font-size: 8px;
+    }
+
+    .progress-circle .sub-pra {
+        font-size: 6px;
+        margin-top: 3px;
+    }
+
+    .initial-roadmap {
+        padding: 10px;
+    }
+
+    .roadmap-selection {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .roadmap-selection button {
+        width: 100%;
+    }
+
+    .roadmap-code button {
+        width: 100%;
+    }
+
+    .selection-input,
+    .roadmap-selection-role .selection-input,
+    .roadmap-selection-intervention .selection-input,
+    .roadmap-selection-intervention .selection-input-end,
+    .roadmap-selection-intervention-advanced .selection-input-focus {
+        padding: 10px 30px 10px 12px;
+        font-size: 12px;
+    }
+
+    .dropdown-toggle-icon,
+    .fixed-icon {
+        right: 6px;
+        font-size: 12px;
+        padding: 3px;
+    }
+
+    .dropdown-select {
+        min-width: 150px;
+    }
+
+    .dropdown-select-item {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .selection-input-focus {
+        padding: 5px 30px 5px 10px;
+    }
+
+    .dropdown-option-item {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
+
+    .selected-value {
+        font-size: 8px;
+        padding: 2px 5px;
+    }
+
+    .editable-box {
+        font-size: 10px;
+        padding: 8px;
+        min-height: 120px;
+    }
+
+    .save-button-advanced {
+        padding: 6px 12px;
+        font-size: 10px;
+    }
+
+    .upload-button-advanced {
+        padding: 6px 10px;
+        font-size: 10px;
+    }
+}
+
+
+.file-name-container {
+  display: flex;
+  align-items: center;
+  color: #006894;
+}
+
+.file-name {
+  color: #007bff;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.remove-file {
+  cursor: pointer;
+  color: #ff0000;
+  font-size: 16px;
+}
+
+.ltr-input {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: plaintext !important;
+}
+
+
+.roadmap-section-wrapper {
+  width: 100%;
+  max-width: 710px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+

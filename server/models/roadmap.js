@@ -16,7 +16,11 @@ const roadmapSchema = new mongoose.Schema({
         sessionTitle: String,
         purpose: String,
         interviewInstruction: String,
-        questions: [String]
+        questions: [String],
+        isComplete: {
+          type: Boolean,
+          default: false, // All sessions start as incomplete
+        },
       }
     ],
     required: true,

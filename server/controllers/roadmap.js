@@ -50,3 +50,25 @@ export const getRoadmaps = async (req, res) => {
 export const getFocusOptions = (req, res) => {
   res.status(200).json(focusOptions);
 };
+
+
+export const getRoadmapById = async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({ message: "Roadmap ID is required." });
+  }
+
+  try {
+    const roadmap = await Roadmap.findById(id);
+    if (!roadmap) {
+      return res.status(404).json({ message: "Roadmap not found." });
+    }
+    res.json(roadmap);
+  } catch (error) {
+    console.error("Error fetching roadmap by ID:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+
