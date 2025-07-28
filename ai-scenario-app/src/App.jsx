@@ -211,7 +211,7 @@ function App() {
         {loading ? "Generating..." : "Generated Roadmap"}
       </button>
 
-      {/* Roadmap Cards */}
+      {/* Roadmap Cards
       {roadmapData.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
           {(() => {
@@ -265,7 +265,7 @@ function App() {
             });
           })()}
         </div>
-      )}
+      )} */}
 
       {/* Output
       <div className="output space-y-4 mt-6">
@@ -288,7 +288,7 @@ function App() {
       <Outlet /> {/* 👈 Child routes render here */}
 
      
-<GuidedRoadmap />
+<GuidedRoadmap lenght={roadmapLength}/>
     </div>
 
   );

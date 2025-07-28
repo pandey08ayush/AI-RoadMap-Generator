@@ -19,6 +19,7 @@ const GuidedRoadmapViewAll = () => {
     const [selectedDays, setSelectedDays] = useState(7);
     const [showPopup, setShowPopup] = useState(false); // State to toggle popup
     const [roadmapData, setRoadmapData] = useState([]);
+    const [totalSessions, setTotalSessions] = useState(0);
 
     // const { user } = useAuth();
     const roadmapId = "6884d94ec6b8a159a9abf427"
@@ -41,6 +42,7 @@ const GuidedRoadmapViewAll = () => {
         try {
             const res = await axios.get(`http://localhost:5000/api/roadmaps/${roadmapId}`);
             setRoadmapData(res.data.roadmap);
+            setTotalSessions(res.data.roadmap.length);
             console.log("Fetched roadmap data:", res.data.roadmap);
         } catch (err) {
             console.error("Error fetching roadmap:", err);
@@ -48,6 +50,17 @@ const GuidedRoadmapViewAll = () => {
     };
 
     fetchRoadmap()
+    const markSessionComplete = async (index) => {
+        try {
+            const res = await axios.patch(
+                `http://localhost:5000/api/roadmaps/${roadmapId}/sessions/${index}`
+            );
+            console.log('Marked as complete:', res.data);
+            await fetchRoadmap(); // Refresh the roadmap with updated status
+        } catch (error) {
+            console.error('Error marking session complete:', error);
+        }
+    };
 
     useEffect(() => {
         if (showModal) {
@@ -137,7 +150,7 @@ const GuidedRoadmapViewAll = () => {
                         <div className='card-title'>
                             <div className='card-title-view-all-header'>
                                 <span>Dialogue</span>
-                                <span className='total-days-view-all'>{index + 1}/7</span>
+                                <span className='total-days-view-all'>{index + 1}/</span>
                             </div>
                             <h2>{session.sessionTitle}</h2>
                         </div>
@@ -145,7 +158,12 @@ const GuidedRoadmapViewAll = () => {
                             {/* <img src={card_img} alt="Interview Card" /> */}
                         </div>
                         <div className='card-btn'>
-                            <button>Attempt Now</button>
+                            <button
+                                onClick={() => markSessionComplete(index)}
+                                className="bg-blue-500 text-white px-3 py-1 rounded mt-2"
+                            >
+                                Attempt Now
+                            </button>
                         </div>
                     </div>
                 );
@@ -158,7 +176,7 @@ const GuidedRoadmapViewAll = () => {
                         <div className='card-title'>
                             <div className='card-title-view-all-header'>
                                 <span>Dialogue</span>
-                                <span className='total-days-view-all'>{index + 1}/7</span>
+                                <span className='total-days-view-all'>{index + 1}/{totalSessions}</span>
                             </div>
                             <h2>{session.sessionTitle}</h2>
                         </div>
@@ -231,7 +249,7 @@ const GuidedRoadmapViewAll = () => {
                                     )}
 
                                     {/* Right-side outward line for last card */}
-                                    
+
                                     {index === rowCards.length - 1 && shouldBeGreen && (
                                         <svg
                                             className="outward-line"
@@ -281,7 +299,7 @@ const GuidedRoadmapViewAll = () => {
                         </div>
                     )}
                     {/* Vertical connector for odd-numbered rows (right to right) */}
-                    
+
                     {(i / 3) % 2 === 0 && i + 3 < allCards.length && (
                         <div className="vertical-connector" style={{ position: 'relative' }}>
                             <svg
@@ -306,7 +324,7 @@ const GuidedRoadmapViewAll = () => {
                         </div>
                     )}
                     {/* Vertical connector for even-numbered rows (left to left) */}
-                    
+
                     {(i / 3) % 2 === 1 && i + 3 < allCards.length && (
                         <div className="vertical-connector" style={{ position: 'relative' }}>
                             <svg

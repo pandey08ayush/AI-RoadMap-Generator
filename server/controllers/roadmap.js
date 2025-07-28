@@ -72,3 +72,31 @@ export const getRoadmapById = async (req, res) => {
 }
 
 
+export const sessionControl = async (req, res) => {
+  try {
+    const { roadmapId, sessionIndex } = req.params;
+    const index = parseInt(sessionIndex, 10);
+
+    if (isNaN(index)) {
+      return res.status(400).json({ message: "Invalid session index" });
+    }
+
+    const roadmap = await Roadmap.findById(roadmapId);
+    if (!roadmap) {
+      return res.status(404).json({ message: "Roadmap not found" });
+    }
+
+    if (!roadmap.roadmap[index]) {
+      return res.status(404).json({ message: "Session not found at given index" });
+    }
+
+    roadmap.roadmap[index].isComplete = true;
+    await roadmap.save();
+
+    res.json({ success: true, updatedSession: roadmap.roadmap[index] });
+
+  } catch (error) {
+    console.error("Error marking session complete:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
