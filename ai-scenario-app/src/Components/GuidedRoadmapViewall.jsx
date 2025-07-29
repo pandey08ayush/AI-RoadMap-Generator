@@ -201,10 +201,9 @@ const GuidedRoadmapViewAll = () => {
 
         for (let i = 0; i < allCards.length; i += 3) {
             let rowCards = allCards.slice(i, i + 3);
-            // if (Math.floor(i / 3) % 2 === 1) {
-            //     rowCards = rowCards.reverse();
-            // }
-
+            if (Math.floor(i / 3) % 2 === 1) {
+                rowCards = rowCards.reverse();
+            }
             const row = (
                 <div key={`row-${i}`} className="card-row-wrapper">
                     {i === 0 && (
@@ -225,83 +224,74 @@ const GuidedRoadmapViewAll = () => {
                         </div>
                     )}
                     <div className="card-row" style={{ position: 'relative' }}>
-                        {(() => {
+                        {rowCards.map((card, index) => {
+                            const visualIndexInRow = index;
+                            const isOddRow = Math.floor(i / 3) % 2 === 1;
+                            const actualIndexInAllCards = isOddRow
+                                ? i + (rowCards.length - 1 - visualIndexInRow)
+                                : i + visualIndexInRow;
+
                             const firstAttemptIndex = roadmapData.findIndex(session => !session.isComplete);
+                            const shouldBeGreen = actualIndexInAllCards < firstAttemptIndex;
 
-                            return rowCards.map((card, index) => {
-                                const visualIndexInRow = index;
-                                const isOddRow = Math.floor(i / 3) % 2 === 1;
-                                const actualIndexInAllCards =  i + index;
+                            return (
+                                <React.Fragment key={index}>
+                                    {card}
 
-                                const shouldBeGreen =
-                                    actualIndexInAllCards < (firstAttemptIndex === -1 ? roadmapData.length : firstAttemptIndex);
+                                    {/* Middle progress lines */}
+                                    {index < rowCards.length - 1 && (
+                                        <div className={`progress-line-guided-view-all ${shouldBeGreen ? 'green-progress' : ''}`}>
+                                            <div
+                                                className="progress-circle-guided-view-all"
+                                                style={{ background: shouldBeGreen ? '#28a745' : '#F6F6F6' }}
+                                            />
+                                        </div>
+                                    )}
 
-                                return (
-                                    <React.Fragment key={index}>
-                                        {card}
+                                    {/* Right-side outward line for last card */}
+                                    
+                                    {index === rowCards.length - 1 && shouldBeGreen && (
+                                        <svg
+                                            className="outward-line"
+                                            width="80"
+                                            height="230"
+                                            style={{ position: 'absolute', right: '-80px', top: '-10px' }}
+                                        >
+                                            <line
+                                                x1="10"
+                                                y1="50%"
+                                                x2="60"
+                                                y2="50%"
+                                                stroke="#ccc"
+                                                strokeWidth="6"
+                                                strokeLinecap="round"
+                                            />
+                                        </svg>
+                                    )}
 
-                                        {/* Middle progress lines */}
-
-                                        {index < rowCards.length - 1 && (
-                                            <div className={`progress-line-guided-view-all ${shouldBeGreen ? 'green-progress' : ''}`}>
-                                                <div
-                                                    className="progress-circle-guided-view-all"
-                                                    style={{ background: shouldBeGreen ? '#28a745' : '#F6F6F6' }}
-                                                />
-                                            </div>
-                                        )}
-
-                                        {/* Right-side outward line for last card */}
-
-                                        {index === rowCards.length - 1 && roadmapData[actualIndexInAllCards]?.isComplete &&
-                                            roadmapData[actualIndexInAllCards + 1] && (
-                                                <svg
-                                                    className="outward-line"
-                                                    width="80"
-                                                    height="230"
-                                                    style={{ position: 'absolute', right: '-80px', top: '-10px' }}
-                                                >
-
-                                                    <line
-                                                        x1="10"
-                                                        y1="50%"
-                                                        x2="60"
-                                                        y2="50%"
-                                                        stroke="#ccc"
-                                                        strokeWidth="6"
-                                                        strokeLinecap="round"
-                                                    />
-                                                </svg>
-                                            )}
-
-                                        {/* Left-side outward line for first card on even rows (i.e. second visual row) */}
-
-                                        {i >= 3 && index === 0 && roadmapData[actualIndexInAllCards]?.isComplete &&
-                                            roadmapData[actualIndexInAllCards + 1] && (
-
-                                                <svg
-                                                    className="left-outward-line"
-                                                    width="80"
-                                                    height="230"
-                                                    style={{ position: 'absolute', left: '-70px', top: '-10px' }}
-                                                >
-                                                    <line
-                                                        x1="60"
-                                                        y1="50%"
-                                                        x2="10"
-                                                        y2="50%"
-                                                        stroke="#ccc"
-                                                        strokeWidth="6"
-                                                        strokeLinecap="round"
-                                                    />
-                                                </svg>
-                                            )}
-                                    </React.Fragment>
-                                );
-                            })
-                        }
-                        )()}
-
+                                    {/* Left-side outward line for first card on even rows (i.e. second visual row) */}
+                                    
+                                    {i >= 3 && index === 0 && shouldBeGreen && (
+                                        <svg
+                                            className="left-outward-line"
+                                            width="80"
+                                            height="230"
+                                            style={{ position: 'absolute', left: '-70px', top: '-10px' }}
+                                        >
+                                            <line
+                                                x1="60"
+                                                y1="50%"
+                                                x2="10"
+                                                y2="50%"
+                                                stroke="#ccc"
+                                                strokeWidth="6"
+                                                strokeLinecap="round"
+                                            />
+                                        </svg>
+                                    )}
+                                </React.Fragment>
+                            );
+                        })}
                     </div>
 
                     {i === 0 && (
@@ -312,54 +302,87 @@ const GuidedRoadmapViewAll = () => {
                     {/* Vertical connector for odd-numbered rows (right to right) */}
 
                     {(i / 3) % 2 === 0 && i + 3 < allCards.length && (
-                        <div className="vertical-connector" style={{ position: 'relative' }} >
+                        (() => {
+                            const connectorIndex = i + 2;
+                            const isConnectorGreen =
+                                roadmapData[connectorIndex]?.isComplete &&
+                                roadmapData[connectorIndex - 1]?.isComplete;
 
-                            <svg
-                                width="60"
-                                height="270"
-                                style={{ position: 'absolute', right: '-91px', top: '-95px' }}
-                            >
-                                <line
-                                    x1="30"
-                                    y1="0"
-                                    x2="30"
-                                    y2="270"
-                                    stroke="#ccc"
-                                    strokeWidth="6"
-                                    strokeLinecap="round"
-                                />
-                                <circle cx="30" cy="135" r="20" fill="#F6F6F6" stroke="#fff" strokeWidth="2" />
-                                <foreignObject x="22" y="127" width="16" height="16">
-                                    {/* <FaCheck style={{ color: '#E0E3E5', fontSize: '16px' }} /> */}
-                                </foreignObject>
-                            </svg>
-                        </div>
+                            return (
+                                <div className="vertical-connector" style={{ position: 'relative' }}>
+                                    <svg
+                                        width="60"
+                                        height="270"
+                                        style={{ position: 'absolute', right: '-91px', top: '-95px' }}
+                                    >
+                                        <line
+                                            x1="30"
+                                            y1="0"
+                                            x2="30"
+                                            y2="270"
+                                            stroke={isConnectorGreen ? "#28a745" : "#ccc"}
+                                            strokeWidth="6"
+                                            strokeLinecap="round"
+                                        />
+                                        <circle
+                                            cx="30"
+                                            cy="135"
+                                            r="20"
+                                            fill={isConnectorGreen ? "#28a745" : "#F6F6F6"}
+                                            stroke="#fff"
+                                            strokeWidth="2"
+                                        />
+                                        <foreignObject x="22" y="127" width="16" height="16">
+                                            {/* <FaCheck /> */}
+                                        </foreignObject>
+                                    </svg>
+                                </div>
+                            );
+                        })()
                     )}
+
                     {/* Vertical connector for even-numbered rows (left to left) */}
 
                     {(i / 3) % 2 === 1 && i + 3 < allCards.length && (
-                        <div className="vertical-connector" style={{ position: 'relative' }}>
-                            <svg
-                                width="60"
-                                height="270"
-                                style={{ position: 'absolute', left: '-90px', top: '-95px' }}
-                            >
-                                <line
-                                    x1="30"
-                                    y1="0"
-                                    x2="30"
-                                    y2="270"
-                                    stroke="#ccc"
-                                    strokeWidth="6"
-                                    strokeLinecap="round"
-                                />
-                                <circle cx="30" cy="135" r="20" fill="#F6F6F6" stroke="#fff" strokeWidth="2" />
-                                <foreignObject x="22" y="127" width="16" height="16">
-                                    {/* <FaCheck style={{ color: '#E0E3E5', fontSize: '16px' }} /> */}
-                                </foreignObject>
-                            </svg>
-                        </div>
+                        (() => {
+                            const connectorIndex = i + 2;
+                            const isConnectorGreen =
+                                roadmapData[connectorIndex]?.isComplete &&
+                                roadmapData[connectorIndex - 1]?.isComplete;
+
+                            return (
+                                <div className="vertical-connector" style={{ position: 'relative' }}>
+                                    <svg
+                                        width="60"
+                                        height="270"
+                                        style={{ position: 'absolute', left: '-90px', top: '-95px' }}
+                                    >
+                                        <line
+                                            x1="30"
+                                            y1="0"
+                                            x2="30"
+                                            y2="270"
+                                            stroke={isConnectorGreen ? "#28a745" : "#ccc"}
+                                            strokeWidth="6"
+                                            strokeLinecap="round"
+                                        />
+                                        <circle
+                                            cx="30"
+                                            cy="135"
+                                            r="20"
+                                            fill={isConnectorGreen ? "#28a745" : "#F6F6F6"}
+                                            stroke="#fff"
+                                            strokeWidth="2"
+                                        />
+                                        <foreignObject x="22" y="127" width="16" height="16">
+                                            {/* <FaCheck /> */}
+                                        </foreignObject>
+                                    </svg>
+                                </div>
+                            );
+                        })()
                     )}
+
                 </div>
             );
             rows.push(row);

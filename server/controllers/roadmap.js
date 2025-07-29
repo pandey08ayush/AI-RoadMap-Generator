@@ -19,7 +19,7 @@ export const getRoadmaps = async (req, res) => {
     const prompt = generatePrompt(role, experience, focusInstruction, resumeText, jdText,duration,selectedThemes);
     
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4.1-nano",
       messages: [{ role: "user", content: prompt }],
       temperature: 0.5,
     });
