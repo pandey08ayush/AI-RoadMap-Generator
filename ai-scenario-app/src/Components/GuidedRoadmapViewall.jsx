@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+ import React, { useState, useEffect } from 'react';
 import '../Components/Guided.css';
 // import card_img from '../assets/interview-card.png';
 // import { BsFillBellFill } from "react-icons/bs";
@@ -24,7 +24,7 @@ const GuidedRoadmapViewAll = () => {
 
 
     // const { user } = useAuth();
-    const roadmapId = "68889f0d1372fbf1f4987dac"
+    const roadmapId = "6889d072c934b8ad40546a4a"
 
 
     const setInitialDateTime = () => {
@@ -65,23 +65,23 @@ const GuidedRoadmapViewAll = () => {
         }
     };
 
-//  const mapPersonasToSessions = (roadmapData) => {
-//   const { roadmap, personaUsed } = roadmapData;
+    //  const mapPersonasToSessions = (roadmapData) => {
+    //   const { roadmap, personaUsed } = roadmapData;
 
-//   // Create a quick lookup map
-//   const personaMap = {};
-//   personaUsed.forEach(p => {
-//     personaMap[p._id] = p;
-//   });
+    //   // Create a quick lookup map
+    //   const personaMap = {};
+    //   personaUsed.forEach(p => {
+    //     personaMap[p._id] = p;
+    //   });
 
-//   // Enrich sessions with full persona object
-//   const enrichedSessions = roadmap.map(session => ({
-//     ...session,
-//     assignedPersona: personaMap[session.assignedPersona] || null
-//   }));
+    //   // Enrich sessions with full persona object
+    //   const enrichedSessions = roadmap.map(session => ({
+    //     ...session,
+    //     assignedPersona: personaMap[session.assignedPersona] || null
+    //   }));
 
-//   return enrichedSessions;
-// };
+    //   return enrichedSessions;
+    // };
 
     useEffect(() => {
         if (showModal) {
@@ -89,12 +89,12 @@ const GuidedRoadmapViewAll = () => {
         }
     }, [showModal]);
 
-//     useEffect(() => {
-//   if (roadmapData?.roadmap && roadmapData?.personaUsed) {
-//     const enriched = mapPersonasToSessions(roadmapData);
-//     setSessions(enriched); // or whatever state you're using
-//   }
-// }, [roadmapData]);
+    //     useEffect(() => {
+    //   if (roadmapData?.roadmap && roadmapData?.personaUsed) {
+    //     const enriched = mapPersonasToSessions(roadmapData);
+    //     setSessions(enriched); // or whatever state you're using
+    //   }
+    // }, [roadmapData]);
 
     const handleSubmit = async () => {
         if (!scheduleDate.day || !scheduleDate.month || !scheduleDate.year || !scheduleTime.hours || !scheduleTime.minutes) {
@@ -256,11 +256,13 @@ const GuidedRoadmapViewAll = () => {
                             const visualIndexInRow = index;
                             const isOddRow = Math.floor(i / 3) % 2 === 1;
                             const actualIndexInAllCards = isOddRow
-                                ? i + (rowCards.length - 1 - visualIndexInRow)
+                                ? i + (rowCards.length - 1) - visualIndexInRow
                                 : i + visualIndexInRow;
 
                             const firstAttemptIndex = roadmapData.findIndex(session => !session.isComplete);
                             const shouldBeGreen = actualIndexInAllCards < firstAttemptIndex;
+
+                            
 
                             return (
                                 <React.Fragment key={index}>
@@ -277,8 +279,8 @@ const GuidedRoadmapViewAll = () => {
                                     )}
 
                                     {/* Right-side outward line for last card */}
-                                    
-                                    {index === rowCards.length - 1 && shouldBeGreen && (
+
+                                    {index === rowCards.length - 1 && (
                                         <svg
                                             className="outward-line"
                                             width="80"
@@ -290,16 +292,15 @@ const GuidedRoadmapViewAll = () => {
                                                 y1="50%"
                                                 x2="60"
                                                 y2="50%"
-                                                stroke="#ccc"
+                                                stroke={shouldBeGreen ? "#28a745" : "#ccc"}
                                                 strokeWidth="6"
                                                 strokeLinecap="round"
                                             />
                                         </svg>
                                     )}
-
                                     {/* Left-side outward line for first card on even rows (i.e. second visual row) */}
-                                    
-                                    {i >= 3 && index === 0 && shouldBeGreen && (
+
+                                    {i >= 3 && index === 0 && (
                                         <svg
                                             className="left-outward-line"
                                             width="80"
@@ -311,12 +312,13 @@ const GuidedRoadmapViewAll = () => {
                                                 y1="50%"
                                                 x2="10"
                                                 y2="50%"
-                                                stroke="#ccc"
+                                                stroke={shouldBeGreen ? "#28a745" : "#ccc"}
                                                 strokeWidth="6"
                                                 strokeLinecap="round"
                                             />
                                         </svg>
                                     )}
+
                                 </React.Fragment>
                             );
                         })}
