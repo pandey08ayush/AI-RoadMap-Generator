@@ -4,10 +4,17 @@ import openai from '../utlis/openai.js';
 import { focusOptions } from "../utlis/focusOptions.js";
 import { buildFocusInstruction } from "../utlis/buildFocusInstruction.js";
 import { advancedTheme, basicTheme } from '../utlis/sessiontheme.js';
+import Personas from '../models/persona.js';
 
 export const getRoadmaps = async (req, res) => {
-  const { role, experience, selectedFocusAreas = [], resumeText = "", jdText = "", duration} = req.body;
+  const { role, experience, selectedFocusAreas = [], resumeText = "", jdText = "", duration } = req.body;
   const selectedThemes = duration === 21 ? advancedTheme : basicTheme;
+
+  const allPersonas = await Personas.find();
+  const personaInstructions = allPersonas
+
+
+
 
   if (!role || !experience) {
     return res.status(400).json({ message: "Role and experience are required." });
@@ -16,31 +23,58 @@ export const getRoadmaps = async (req, res) => {
   const focusInstruction = buildFocusInstruction(selectedFocusAreas);
 
   try {
-    const prompt = generatePrompt(role, experience, focusInstruction, resumeText, jdText,duration,selectedThemes);
-    
+    const prompt = generatePrompt(role, experience, focusInstruction, resumeText, jdText, duration, selectedThemes, personaInstructions);
+
     const completion = await openai.chat.completions.create({
       model: "gpt-4.1-nano",
       messages: [{ role: "user", content: prompt }],
       temperature: 0.5,
     });
 
+    
     const responseText = completion.choices[0].message.content.trim();
-
+    
     // 🧹 Clean JSON inside ```json ... ``` wrapper
     const clean = responseText.replace(/^```json\s*/i, "").replace(/```$/g, "").trim();
-
+    
     let json;
     try {
       json = JSON.parse(clean);
+      console.log(json)
     } catch (e) {
       console.error("JSON parse error:", e);
       return res.status(500).json({ message: "AI returned invalid format. Please retry." });
     }
+    
+// If the parsed json itself is the roadmap array
+const rawRoadmap = Array.isArray(json) ? json : json.roadmap;
+console.log(rawRoadmap)
 
-    const newRoadmap = new Roadmap({ role, experience, roadmap: json ,duration });
+if (!Array.isArray(rawRoadmap)) {
+  console.error("Expected roadmap to be an array but got:", rawRoadmap);
+  return res.status(400).json({ message: "Invalid roadmap format from AI. Please check the AI response structure." });
+}
+
+const cleanedRoadmap = rawRoadmap.map(session => {
+  const assigned = session.assignedPersona;
+
+  return {
+    ...session,
+    assignedPersona: {
+      persona_id: assigned?._id || null,
+      persona_role: assigned?.persona_role || "",
+      background: assigned?.background || "",
+      persona_experience: assigned?.persona_experience || "",
+    },
+  };
+});
+
+console.log("Clean",cleanedRoadmap)
+
+    const newRoadmap = new Roadmap({ role, experience,  roadmap: cleanedRoadmap, duration });
     await newRoadmap.save();
 
-    res.json({ success: true, roadmap: json, prompt });
+    res.json({ success: true, roadmap: json, prompt, personaInstructions });
   } catch (error) {
     console.error("Error fetching roadmaps:", error);
     res.status(500).json({ message: "Internal server error" });
@@ -100,3 +134,14 @@ export const sessionControl = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
+export const getallPersonas = async (req, res) => {
+  try {
+    const personas = await Personas.find();
+    res.status(200).json(personas);
+  } catch (error) {
+    console.error("Error fetching personas:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}

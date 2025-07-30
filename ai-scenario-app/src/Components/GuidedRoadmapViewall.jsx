@@ -20,9 +20,11 @@ const GuidedRoadmapViewAll = () => {
     const [showPopup, setShowPopup] = useState(false); // State to toggle popup
     const [roadmapData, setRoadmapData] = useState([]);
     const [totalSessions, setTotalSessions] = useState(0);
+    const [personas, setPersonas] = useState([]);
+
 
     // const { user } = useAuth();
-    const roadmapId = "6884d94ec6b8a159a9abf427"
+    const roadmapId = "68889f0d1372fbf1f4987dac"
 
 
     const setInitialDateTime = () => {
@@ -41,6 +43,7 @@ const GuidedRoadmapViewAll = () => {
     const fetchRoadmap = async () => {
         try {
             const res = await axios.get(`http://localhost:5000/api/roadmaps/${roadmapId}`);
+            console.log(res.data.roadmap[0]._id)
             setRoadmapData(res.data.roadmap);
             setTotalSessions(res.data.roadmap.length);
             console.log("Fetched roadmap data:", res.data.roadmap);
@@ -62,11 +65,36 @@ const GuidedRoadmapViewAll = () => {
         }
     };
 
+//  const mapPersonasToSessions = (roadmapData) => {
+//   const { roadmap, personaUsed } = roadmapData;
+
+//   // Create a quick lookup map
+//   const personaMap = {};
+//   personaUsed.forEach(p => {
+//     personaMap[p._id] = p;
+//   });
+
+//   // Enrich sessions with full persona object
+//   const enrichedSessions = roadmap.map(session => ({
+//     ...session,
+//     assignedPersona: personaMap[session.assignedPersona] || null
+//   }));
+
+//   return enrichedSessions;
+// };
+
     useEffect(() => {
         if (showModal) {
             setInitialDateTime();
         }
     }, [showModal]);
+
+//     useEffect(() => {
+//   if (roadmapData?.roadmap && roadmapData?.personaUsed) {
+//     const enriched = mapPersonasToSessions(roadmapData);
+//     setSessions(enriched); // or whatever state you're using
+//   }
+// }, [roadmapData]);
 
     const handleSubmit = async () => {
         if (!scheduleDate.day || !scheduleDate.month || !scheduleDate.year || !scheduleTime.hours || !scheduleTime.minutes) {

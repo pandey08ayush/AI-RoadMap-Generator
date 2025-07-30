@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Personas from './persona.js';
 
 const roadmapSchema = new mongoose.Schema({
   role: {
@@ -9,7 +10,10 @@ const roadmapSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  duration: { type: Number, default: 7 }, 
+  duration: {
+    type: Number,
+    default: 7
+  },
   roadmap: {
     type: [
       {
@@ -17,18 +21,35 @@ const roadmapSchema = new mongoose.Schema({
         purpose: String,
         interviewInstruction: String,
         questions: [String],
+        assignedPersona: {
+       
+            persona_id: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: 'Personas',
+              required: false,
+            },
+            persona_role: {
+              type: String,
+              required: false,
+            },
+            background: {
+              type: String,
+              required: false,
+            },
+            persona_experience: {
+              type: String,
+              required: false,
+            }
+          },
+        
         isComplete: {
           type: Boolean,
-          default: false, // All sessions start as incomplete
-        },
+          default: false,
+        }
       }
     ],
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+    required: true
+  }
 });
 
 export default mongoose.model("Roadmap", roadmapSchema);
