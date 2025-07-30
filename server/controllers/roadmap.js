@@ -145,3 +145,14 @@ export const getallPersonas = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 }
+
+export const getPersonaById = async (req, res) => {
+    try {
+        const persona = await Personas.findById(req.params.id);
+        if (!persona) return res.status(404).json({ message: "Persona not found" });
+        res.status(200).json(persona);
+    } catch (error) {
+        console.error("Error fetching persona:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};

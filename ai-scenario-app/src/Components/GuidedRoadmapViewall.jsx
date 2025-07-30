@@ -1,9 +1,11 @@
- import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Components/Guided.css';
 // import card_img from '../assets/interview-card.png';
 // import { BsFillBellFill } from "react-icons/bs";
 import axios from 'axios';
 import GuidedRoadmapPopup from './GuidedRodmapPopup';
+import PersonaPop from './PersonaPopup';
+
 
 // import { FaAngleDown } from "react-icons/fa6";
 
@@ -20,8 +22,8 @@ const GuidedRoadmapViewAll = () => {
     const [showPopup, setShowPopup] = useState(false); // State to toggle popup
     const [roadmapData, setRoadmapData] = useState([]);
     const [totalSessions, setTotalSessions] = useState(0);
-    const [personas, setPersonas] = useState([]);
-
+    const [selectedSession, setSelectedSession] = useState(null);
+    const [showPersonaPopup, setShowPersonaPopup] = useState(false);
 
     // const { user } = useAuth();
     const roadmapId = "6889d072c934b8ad40546a4a"
@@ -43,10 +45,10 @@ const GuidedRoadmapViewAll = () => {
     const fetchRoadmap = async () => {
         try {
             const res = await axios.get(`http://localhost:5000/api/roadmaps/${roadmapId}`);
-            console.log(res.data.roadmap[0]._id)
+            // console.log(res.data.roadmap[0]._id)
             setRoadmapData(res.data.roadmap);
             setTotalSessions(res.data.roadmap.length);
-            console.log("Fetched roadmap data:", res.data.roadmap);
+            // console.log("Fetched roadmap data:", res.data.roadmap);
         } catch (err) {
             console.error("Error fetching roadmap:", err);
         }
@@ -58,30 +60,13 @@ const GuidedRoadmapViewAll = () => {
             const res = await axios.patch(
                 `http://localhost:5000/api/roadmaps/${roadmapId}/sessions/${index}`
             );
-            console.log('Marked as complete:', res.data);
+            // console.log('Marked as complete:', res.data);
             await fetchRoadmap(); // Refresh the roadmap with updated status
         } catch (error) {
             console.error('Error marking session complete:', error);
         }
     };
 
-    //  const mapPersonasToSessions = (roadmapData) => {
-    //   const { roadmap, personaUsed } = roadmapData;
-
-    //   // Create a quick lookup map
-    //   const personaMap = {};
-    //   personaUsed.forEach(p => {
-    //     personaMap[p._id] = p;
-    //   });
-
-    //   // Enrich sessions with full persona object
-    //   const enrichedSessions = roadmap.map(session => ({
-    //     ...session,
-    //     assignedPersona: personaMap[session.assignedPersona] || null
-    //   }));
-
-    //   return enrichedSessions;
-    // };
 
     useEffect(() => {
         if (showModal) {
@@ -89,12 +74,7 @@ const GuidedRoadmapViewAll = () => {
         }
     }, [showModal]);
 
-    //     useEffect(() => {
-    //   if (roadmapData?.roadmap && roadmapData?.personaUsed) {
-    //     const enriched = mapPersonasToSessions(roadmapData);
-    //     setSessions(enriched); // or whatever state you're using
-    //   }
-    // }, [roadmapData]);
+
 
     const handleSubmit = async () => {
         if (!scheduleDate.day || !scheduleDate.month || !scheduleDate.year || !scheduleTime.hours || !scheduleTime.minutes) {
@@ -150,6 +130,7 @@ const GuidedRoadmapViewAll = () => {
         );
 
         const allCards = roadmapData.map((session, index) => {
+            // console.log("Session data",session.assignedPersona.persona_id)
             // LOCK all cards that come after the first attemptable session
             if (index > attemptIndex) {
                 return (
@@ -174,26 +155,43 @@ const GuidedRoadmapViewAll = () => {
             // ATTEMPT CARD (first incomplete and unlocked session)
             if (index === attemptIndex) {
                 return (
-                    <div key={`attempt-${index}`} className='fst-card-view-all'>
-                        <div className='card-title'>
-                            <div className='card-title-view-all-header'>
-                                <span>Dialogue</span>
-                                <span className='total-days-view-all'>{index + 1}/</span>
+                    <React.Fragment key={`attempt-${index}`}>
+                        {showPersonaPopup && (
+                            <PersonaPop
+                                sessionData={selectedSession}
+                                onClose={() => setShowPersonaPopup(false)}
+                            />
+                        )}
+
+                        <div className='fst-card-view-all'>
+                            <div className='card-title'>
+                                <div className='card-title-view-all-header'>
+                                    <span>Dialogue</span>
+                                    <span className='total-days-view-all'>{index + 1}/</span>
+                                </div>
+                                <h2>{session.sessionTitle}</h2>
                             </div>
-                            <h2>{session.sessionTitle}</h2>
+                            <div className='card-img-roadmap-view-all'>
+                                {/* <img src={card_img} alt="Interview Card" /> */}
+                            </div>
+                            <div className='card-btn'>
+                                <button
+                                    onClick={() => {
+                                        setSelectedSession({
+                                            personaId: session.assignedPersona.persona_id,
+                                            personaExperience: session.assignedPersona.persona_experience,
+                                            personaRole: session.assignedPersona.persona_role,
+                                            personaBackground: session.assignedPersona.background
+                                        });
+                                        setShowPersonaPopup(true);
+                                    }}
+                                    className="bg-blue-500 text-white px-3 py-1 rounded mt-2"
+                                >
+                                    Attempt Now
+                                </button>
+                            </div>
                         </div>
-                        <div className='card-img-roadmap-view-all'>
-                            {/* <img src={card_img} alt="Interview Card" /> */}
-                        </div>
-                        <div className='card-btn'>
-                            <button
-                                onClick={() => markSessionComplete(index)}
-                                className="bg-blue-500 text-white px-3 py-1 rounded mt-2"
-                            >
-                                Attempt Now
-                            </button>
-                        </div>
-                    </div>
+                    </React.Fragment>
                 );
             }
 
@@ -262,7 +260,7 @@ const GuidedRoadmapViewAll = () => {
                             const firstAttemptIndex = roadmapData.findIndex(session => !session.isComplete);
                             const shouldBeGreen = actualIndexInAllCards < firstAttemptIndex;
 
-                            
+
 
                             return (
                                 <React.Fragment key={index}>

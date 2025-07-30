@@ -12,7 +12,7 @@ import axios from 'axios';
 import * as pdfjsLib from 'pdfjs-dist';
 // import { BASE_URL } from '../utils/api';
 
-
+             
 // Set the workerSrc for pdf.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.worker.min.js`;
 

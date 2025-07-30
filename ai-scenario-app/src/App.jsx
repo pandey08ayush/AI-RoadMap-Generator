@@ -47,7 +47,7 @@ function App() {
       try {
         const res = await axios.get(`http://localhost:5000/api/roadmaps/${roadmapId}`);
         setRoadmapData(res.data.roadmap);
-        console.log("Fetched roadmap data:", res.data.roadmap);
+        // console.log("Fetched roadmap data:", res.data.roadmap);
       } catch (err) {
         console.error("Error fetching roadmap:", err);
       }
@@ -96,7 +96,7 @@ function App() {
       });
 
       setResult(res.data.roadmap || []);
-      console.log("Response from backend:", res.data);
+      // console.log("Response from backend:", res.data);
     } catch (err) {
       console.error("Error generating roadmap:", err);
       alert("Failed to generate roadmap. Check console.");
