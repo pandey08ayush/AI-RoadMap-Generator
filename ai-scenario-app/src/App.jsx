@@ -5,6 +5,8 @@ import { Outlet } from 'react-router-dom';
 
 import { extractTextFromPDF, extractTextFromDocx } from "./Extractor"; // Import the extractor functions
 import GuidedRoadmap from "./GuidedRoadmap";
+// import GuidedRoadmapViewAll2nd from './Components/GuidedRoadmapTablet'
+import GuidedRoadmapViewAllSingle from './Components/GuidedRoadMapMobile'
 
 function App() {
   const [role, setRole] = useState("");
@@ -42,7 +44,7 @@ function App() {
   }, []);
 
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchRoadmap = async () => {
       try {
         const res = await axios.get(`http://localhost:5000/api/roadmaps/${roadmapId}`);
@@ -54,7 +56,7 @@ function App() {
     };
 
     fetchRoadmap()
-  },[])
+  }, [])
 
   // Handle file upload and extract text
   const handleFileUpload = async (e, type) => {
@@ -107,7 +109,7 @@ function App() {
   const handleViewSession = (session) => {
     navigate("/blank")
     console.log("View session clicked:", session);
-    
+
   };
 
   return (
@@ -287,8 +289,10 @@ function App() {
       </div> */}
       <Outlet /> {/* 👈 Child routes render here */}
 
-     
-<GuidedRoadmap lenght={roadmapLength}/>
+
+      {/* <GuidedRoadmapViewAll2nd lenght={roadmapLength}/> */}
+      <GuidedRoadmap lenght={roadmapLength} />
+      <GuidedRoadmapViewAllSingle lenght={roadmapLength} />
     </div>
 
   );
